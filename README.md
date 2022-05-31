@@ -1,3 +1,8 @@
+#Final doc file 
+
+name:SPSGP-31679-Salesforce-Developer-Catalyst-Self-Learning-Super-Badges.pdf
+link:https://github.com/smartinternz02/SPSGP-31679-Salesforce-Developer-Catalyst-Self-Learning-Super-Badges/blob/main/SPSGP-31679-Salesforce-Developer-Catalyst-Self-Learning-Super-Badges.pdf
+
 # Salesforce DX Project: Next Steps
 
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
