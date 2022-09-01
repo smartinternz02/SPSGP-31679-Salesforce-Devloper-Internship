@@ -1,26 +1,31 @@
-/**
-- The Apex class must be called 'AnimalLocator', have a 'getAnimalNameById' method that accepts an Integer and returns a String.
-- The 'getAnimalNameById' method must call https://th-apex-http-callout.herokuapp.com/animals/:id, 
-using the ID passed into the method. 
-- The method returns the value of the 'name' property (i.e., the animal name).
-- Create a test class named AnimalLocatorTest that uses a mock class called AnimalLocatorMock to mock the callout response.
-- The unit tests must cover all lines of code included in the AnimalLocator class, resulting in 100% code coverage.
-- Run your test class at least once (via 'Run All' tests the Developer Console) before attempting to verify this challenge.
-**/
-
-
 public class AnimalLocator {
-  
-  public static HttpResponse makeGetCallout {
-      Http http = new Http();
-      HttpRequest request = new HttpRequest();
-      request.setEndpoint('https://th-apex-http-callout.herokuapp.com/animals/:id');
-      request.setMethod('GET');
-      HttpResponse response = http.send(request);
-      // If the request is successful, parse the JSON response.
-      if (response.getStatusCode() == 200) {
-        // Deserialize the JSON string into collections of primitive data types.
-        Map<Integer, Object> Results 
-      }
-  }
+	public class cls_animal {
+		public Integer id;	
+		public String name;	
+		public String eats;	
+		public String says;	
+	}    
+public class JSONOutput{
+	public cls_animal animal;
+
+   	//public JSONOutput parse(String json){
+	//return (JSONOutput) System.JSON.deserialize(json, JSONOutput.class);
+	//}
+}
+    
+    public static String getAnimalNameById (Integer id) {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://th-apex-http-callout.herokuapp.com/animals/' + id);
+        //request.setHeader('id', String.valueof(id)); -- cannot be used in this challenge :)
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        system.debug('response: ' + response.getBody());
+        //Map<String,Object> map_results = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+        jsonOutput results = (jsonOutput) JSON.deserialize(response.getBody(), jsonOutput.class);
+        //Object results = (Object) map_results.get('animal');
+		system.debug('results= ' + results.animal.name);
+        return(results.animal.name);
+    }
+
 }
